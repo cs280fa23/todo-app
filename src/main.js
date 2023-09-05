@@ -47,5 +47,17 @@ function renderTodos() {
   }
 }
 
+// Function to handle adding a new todo
+function handleNewTodoKeyDown(event) {
+  if (event.key === 'Enter' && this.value.trim() !== '') {
+    todos.push({ id: nextTodoId++, text: this.value, completed: false });
+    this.value = ''; // clear the input
+    renderTodos();
+  }
+}
+
+const newTodoElement = document.getElementById('new-todo');
+newTodoElement.addEventListener('keydown', handleNewTodoKeyDown);
+
 // Event listener to initialize the app after the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', renderTodos);
