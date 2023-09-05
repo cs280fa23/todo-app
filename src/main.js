@@ -1,13 +1,51 @@
 import "../style.css";
 
-// Array to store our todos
-const todos = [
-  { id: 1, text: "Buy milk", completed: false },
-  { id: 2, text: "Buy bread", completed: false },
-  { id: 3, text: "Buy jam", completed: true },
-];
-let nextTodoId = 4;
-let filter = "all"; // can be 'all', 'active', or 'completed'
+// Factory function to create a new todo app
+function createTodoApp() {
+  let todos = [];
+  let nextTodoId = 1;
+  let filter = "all"; // possible values: 'all', 'active', 'completed'
+
+  // Add a new todo to the list
+  function addTodo(text) {
+    todos = [...todos, { id: nextTodoId++, text, completed: false }];
+  }
+
+  // Toggle the completed state of a todo
+  function toggleTodo(todoText) {
+    todos = todos.map((todo) =>
+      todo.text === todoText ? { ...todo, completed: !todo.completed } : todo,
+    );
+  }
+
+  // Set the current filter
+  function setFilter(newFilter) {
+    filter = newFilter;
+  }
+
+  // Get the todos based on the current filter
+  function getVisibleTodos() {
+    switch (filter) {
+      case "active":
+        return todos.filter((todo) => !todo.completed);
+      case "completed":
+        return todos.filter((todo) => todo.completed);
+      default:
+        return todos;
+    }
+  }
+
+  // Return the public interface
+  return {
+    addTodo,
+    toggleTodo,
+    setFilter,
+    getVisibleTodos,
+  };
+}
+
+// Create a new todo app
+const todoApp = createTodoApp();
 
 // Function to render the todos based on the current filter
 function renderTodos() {
