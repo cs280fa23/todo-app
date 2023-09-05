@@ -75,5 +75,18 @@ function handleTodoClick(event) {
 const todoListElement = document.getElementById('todo-list');
 todoListElement.addEventListener('click', handleTodoClick);
 
+
+// Function to handle changing the filter
+function handleFilterClick(event) {
+  if (event.target.tagName === 'A') {
+    const hrefValue = event.target.getAttribute('href').slice(2);
+    filter = hrefValue === '' ? 'all' : hrefValue;
+    renderTodos();
+  }
+}
+
+const todoNavElement = document.getElementById('todo-nav');
+todoNavElement.addEventListener('click', handleFilterClick);
+
 // Event listener to initialize the app after the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', renderTodos);
