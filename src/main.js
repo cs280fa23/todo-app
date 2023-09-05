@@ -59,5 +59,21 @@ function handleNewTodoKeyDown(event) {
 const newTodoElement = document.getElementById('new-todo');
 newTodoElement.addEventListener('keydown', handleNewTodoKeyDown);
 
+// Function to handle marking a todo as completed
+function handleTodoClick(event) {
+  if (event.target.classList.contains('todo-text')) {
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].text === event.target.textContent) {
+        todos[i].completed = !todos[i].completed;
+        break;
+      }
+    }
+    renderTodos();
+  }
+}
+
+const todoListElement = document.getElementById('todo-list');
+todoListElement.addEventListener('click', handleTodoClick);
+
 // Event listener to initialize the app after the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', renderTodos);
