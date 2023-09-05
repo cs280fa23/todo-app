@@ -4,8 +4,9 @@ import "../style.css";
 const todos = [
   { id: 1, text: "Buy milk", completed: false },
   { id: 2, text: "Buy bread", completed: false },
+  { id: 3, text: "Buy jam", completed: true },
 ];
-let nextTodoId = 3;
+let nextTodoId = 4;
 let filter = "all"; // can be 'all', 'active', or 'completed'
 
 // Function to render the todos based on the current filter
@@ -45,3 +46,6 @@ function renderTodos() {
     todoListElement.appendChild(todoItem);
   }
 }
+
+// Event listener to initialize the app after the DOM content is fully loaded
+document.addEventListener('DOMContentLoaded', renderTodos);
