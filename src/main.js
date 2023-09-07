@@ -76,6 +76,30 @@ function renderTodos() {
   });
 }
 
+// Update the styles of the filters
+function updateFilterStyles(selectedFilter) {
+  // Get all filter elements
+  const filters = document.querySelectorAll("#todo-nav a");
+
+  // Remove the underline from all filters
+  filters.forEach((filter) => {
+    filter.classList.remove(
+      "underline",
+      "underline-offset-4",
+      "decoration-rose-800",
+      "decoration-2",
+    );
+  });
+
+  // Add the underline to the selected filter
+  selectedFilter.classList.add(
+    "underline",
+    "underline-offset-4",
+    "decoration-rose-800",
+    "decoration-2",
+  );
+}
+
 // Function to handle adding a new todo
 document.getElementById("new-todo").addEventListener("keydown", (event) => {
   const value = event.target.value.trim();
@@ -100,6 +124,7 @@ document.getElementById("todo-nav").addEventListener("click", (event) => {
     const hrefValue = event.target.getAttribute("href").slice(2);
     const filter = hrefValue === "" ? "all" : hrefValue;
     todoApp.setFilter(filter);
+    updateFilterStyles(event.target);
     renderTodos();
   }
 });
