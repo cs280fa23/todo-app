@@ -1,4 +1,4 @@
-import Todo from './Todo';
+import Todo from "./Todo";
 
 export const FILTERS = {
   ALL: "all",
@@ -33,6 +33,18 @@ class TodoList {
       default:
         return this.todos;
     }
+  }
+
+  markAllAsComplete() {
+    this.todos.forEach((todo) => (todo.completed = true));
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter((todo) => !todo.completed);
+  }
+
+  getActiveTodoCount() {
+    return this.todos.filter((todo) => !todo.completed).length;
   }
 }
 

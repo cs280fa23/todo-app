@@ -23,6 +23,12 @@ class TodoApp {
       todoElement.appendChild(todoText);
       todoListElement.appendChild(todoElement);
     });
+
+    // Update todo count
+    const activeTodoCount = this.todoList.getActiveTodoCount();
+    document.getElementById(
+      "todo-count",
+    ).textContent = `${activeTodoCount} items left`;
   }
 
   setFilter(newFilter) {
@@ -72,6 +78,16 @@ class TodoApp {
     }
   }
 
+  handleMarkAllCompletedClick() {
+    this.todoList.markAllAsComplete();
+    this.renderTodos();
+  }
+
+  handleClearCompletedClick() {
+    this.todoList.clearCompleted();
+    this.renderTodos();
+  }
+
   init() {
     document
       .getElementById("new-todo")
@@ -82,6 +98,12 @@ class TodoApp {
     document
       .getElementById("todo-nav")
       .addEventListener("click", this.handleFilterClick.bind(this));
+    document
+      .getElementById("mark-all-completed")
+      .addEventListener("click", this.handleMarkAllCompletedClick.bind(this));
+    document
+      .getElementById("clear-completed")
+      .addEventListener("click", this.handleClearCompletedClick.bind(this));
 
     this.renderTodos();
   }
