@@ -13,3 +13,9 @@ class Todo {
     this.completed = !this.completed;
   }
 }
+
+const FILTERS = {
+  ALL: "all",
+  ACTIVE: "active",
+  COMPLETED: "completed",
+};
