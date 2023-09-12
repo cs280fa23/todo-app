@@ -136,3 +136,6 @@ class TodoApp {
     this.renderTodos();
   }
 }
+
+const app = new TodoApp();
+window.addEventListener("DOMContentLoaded", () => app.init());
